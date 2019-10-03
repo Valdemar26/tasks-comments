@@ -1,0 +1,21 @@
+<div class="wrapper">
+  <h2>Items</h2>
+  <div class="wrapper_content">
+
+    <div class="wrapper_content-block">
+      <input class="add-item" type="text" [(ngModel)]="input" placeholder="Type name here...">
+      <button class="add-new-item" (click)="addNewItem(input)" [disabled]='!input'>Add new</button>
+    </div>
+
+      <div class="item" *ngFor="let item of items$">
+        <div class="item-text">{{ item.content }}</div>
+        <div class="count">{{ item.comments.length }}</div>
+        <button (click)="deleteItem(item.id)">Delete</button>
+      </div>
+
+    <ng-template #emptyItem>
+      No any items yet!
+    </ng-template>
+
+  </div>
+</div>
