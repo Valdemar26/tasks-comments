@@ -12,8 +12,11 @@
     </div>
   </div>
 
-  <textarea name="" [(ngModel)]="comment" id="" cols="48" rows="5"></textarea>
-  <button (click)="setCommentByItemId(comment)">Send</button>
+  <div class="textarea-wrapper">
+    <textarea name="" [(ngModel)]="comment" id="" cols="48" rows="5"></textarea>
+    <button (click)="setCommentByItemId(comment)">Send</button>
+  </div>
+
 
 </div>
 
