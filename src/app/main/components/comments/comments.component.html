@@ -1,5 +1,5 @@
-<div class="block2_info block2_comments">
-  <h2>Comments #<span class="item-number"></span></h2>
+<div class="comments">
+  <h2>Comments #{{item.id}}<span class="item-number"></span></h2>
 
   <div class="wrapper">
     <div class="comment" *ngFor="let comment of comments">
@@ -13,7 +13,7 @@
   </div>
 
   <textarea name="" [(ngModel)]="comment" id="" cols="48" rows="5"></textarea>
-  <button (click)="setCommentByItemId(comment)">send</button>
+  <button (click)="setCommentByItemId(comment)">Send</button>
 
 </div>
 
