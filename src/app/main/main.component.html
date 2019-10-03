@@ -1,5 +1,5 @@
 <div class="container">
-  <app-items></app-items>
-  <app-comments></app-comments>
+  <app-items (activeItemEvent) = 'getSelectedItemId($event)'></app-items>
+  <app-comments [item]="item"></app-comments>
 </div>
 

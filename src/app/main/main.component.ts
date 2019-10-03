@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  item: any;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getSelectedItemId(e) {
+    this.item = e;
   }
 
 }

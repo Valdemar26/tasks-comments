@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -14,6 +14,9 @@ export class ItemsComponent implements OnInit {
 
   items$: Observable<any>;
   input: string;
+  activeItem: any;
+
+  @Output() activeItemEvent: EventEmitter<number> = new EventEmitter<number>()
 
   constructor(private dataService: DataService) { }
 
@@ -35,6 +38,12 @@ export class ItemsComponent implements OnInit {
       });
 
     this.input = '';
+  }
+
+  selectItem(item, id) {
+    this.activeItem = id;
+    this.activeItemEvent.emit(item);
+    console.log(this.activeItem);
   }
 
   deleteItem(id) {
