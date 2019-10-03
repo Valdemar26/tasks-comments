@@ -41,7 +41,7 @@ export class DataService {
         // comments.push(value);
         obj = Object.assign({}, item = {
           comments : [value]
-        })
+        });
         return this.http.put(`${this.baseUrl}/items/${item.id}`, obj);
       })
     );

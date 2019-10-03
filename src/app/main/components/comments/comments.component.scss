@@ -16,8 +16,12 @@
   .textarea-wrapper {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
 
     button {
+      margin-top: 10px;
+      height: 36px;
       cursor: pointer;
       color: #fff;
       background-color: #007bff;

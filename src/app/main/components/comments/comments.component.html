@@ -3,6 +3,7 @@
 
   <div class="wrapper">
     <div class="comment" *ngFor="let comment of comments">
+      {{comment}}
       <div class="user">
 
       </div>
@@ -16,7 +17,6 @@
     <textarea name="" [(ngModel)]="comment" id="" cols="48" rows="5"></textarea>
     <button (click)="setCommentByItemId(comment)">Send</button>
   </div>
-
 
 </div>
 

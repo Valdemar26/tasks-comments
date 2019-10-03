@@ -7,18 +7,19 @@ import { Observable } from 'rxjs';
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })
+
 export class CommentsComponent implements OnInit, OnChanges {
+
+  @Input() item: any;
 
   comments = [];
   comment: string;
-  @Input() item: any;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.getAllComments();
   }
-
 
   ngOnChanges() {
     console.log(this.item);
@@ -31,7 +32,9 @@ export class CommentsComponent implements OnInit, OnChanges {
   }
 
   setCommentByItemId(comment) {
-    this.dataService.setCommentByItemId(comment, this.item).subscribe();
+    this.dataService.setCommentByItemId(comment, this.item).subscribe( (data) => {
+      console.log('DATA: ', data);
+    });
   }
 
 }
