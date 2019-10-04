@@ -1,6 +1,5 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { DataService } from '../../../service/data.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-comments',
@@ -34,7 +33,9 @@ export class CommentsComponent implements OnInit, OnChanges {
   setCommentByItemId(comment) {
     this.dataService.setCommentByItemId(comment, this.item).subscribe( (data) => {
       console.log('DATA: ', data);
+      // this.comments = [...data];
     });
+    this.comment = '';
   }
 
 }

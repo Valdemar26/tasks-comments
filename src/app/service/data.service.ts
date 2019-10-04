@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { filter, first, tap, map, switchMap, mergeMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,24 +29,23 @@ export class DataService {
     return this.http.delete(`${this.baseUrl}/items/${id}`);
   }
 
-  setCommentByItemId(value, item) {
+  setCommentByItemId(value, selectedItem) {
+    const selectedItemId = selectedItem.id;
 
-    let comments = [];
+    let comment = [];
     let obj = {};
     return this.getAllItems().pipe(
-      map(data => data.filter(i => i.id === item.id)),
-      tap((data) => console.log(data)),
-      mergeMap(response => {
-        console.log(response);
-        // comments.push(value);
-        obj = Object.assign({}, item = {
-          comments : [value]
+      map(data => data.filter(i => i.id === selectedItem.id)),
+      switchMap(response => {
+        comment = [...comment];
+        comment.push(value);
+
+        obj = Object.assign(selectedItem, {
+          comments : [...selectedItem.comments].concat(comment),
         });
-        return this.http.put(`${this.baseUrl}/items/${item.id}`, obj);
+        return this.http.put(`${this.baseUrl}/items/${selectedItemId}`, obj);
       })
     );
-
-    // return this.http.put(`${this.baseUrl}/items/${item.id}`, obj);
   }
 
 }
