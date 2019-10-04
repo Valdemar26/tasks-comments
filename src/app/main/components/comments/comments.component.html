@@ -15,7 +15,7 @@
 
   <div class="textarea-wrapper">
     <textarea name="" [(ngModel)]="comment" id="" cols="48" rows="5"></textarea>
-    <button (click)="setCommentByItemId(comment)">Send</button>
+    <button (click)="setCommentByItemId(comment)" [disabled]="!comment">Send</button>
   </div>
 
 </div>
