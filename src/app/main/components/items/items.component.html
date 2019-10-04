@@ -7,11 +7,13 @@
       <button class="add-new-item" (click)="addNewItem(input)" [disabled]='!input'>Add new</button>
     </div>
 
+    <div class="item-wrapper">
       <div class="item" *ngFor="let item of items$" [class.active]="activeItem === item.id" (click)="selectItem(item, item.id)">
         <div class="item-text">{{ item.content }}</div>
         <div class="count">{{ item.comments.length }}</div>
         <button (click)="deleteItem(item.id)" class="delete">Delete</button>
       </div>
+    </div>
 
     <ng-template #emptyItem>
       No any items yet!
