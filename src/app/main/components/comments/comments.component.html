@@ -1,14 +1,13 @@
 <div class="comments">
-  <h2>Comments #{{item.id}}<span class="item-number"></span></h2>
+  <h2>Comments #{{item?.id}}<span class="item-number"></span></h2>
 
   <div class="wrapper">
     <div class="comment" *ngFor="let comment of comments">
-      {{comment}}
-      <div class="user">
+      <div class="user"> <!-- [style.background]="color[getRandomColor(comment.length)]" -->
 
       </div>
       <div class="text">
-        {{ comment.text }}
+        {{ comment }}
       </div>
     </div>
   </div>
