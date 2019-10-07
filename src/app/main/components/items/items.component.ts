@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { DataService } from '../../../service/data.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-items',
@@ -12,27 +13,32 @@ import { DataService } from '../../../service/data.service';
 
 export class ItemsComponent implements OnInit {
 
-  @Output() activeItemEvent: EventEmitter<number> = new EventEmitter<number>();
+  @Output() activeItemEvent: EventEmitter<any> = new EventEmitter<any>();
 
   items$: Observable<any>;
   input: string;
-  activeItem: any;
+  activeItem: any = new BehaviorSubject(0);
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.getAllItems();
+
+    this.activeItem.subscribe();
   }
 
   getAllItems() {
     this.dataService.getAllItems()
+      .pipe(first())
       .subscribe((res) => {
         this.items$ = res;
+        console.log(this.items$)
       });
   }
 
   addNewItem(input) {
     this.dataService.addNewItem(input)
+      .pipe(first())
       .subscribe((res) => {
         this.getAllItems();
       });
@@ -40,18 +46,20 @@ export class ItemsComponent implements OnInit {
     this.input = '';
   }
 
-  selectItem(item, id) {
-    this.activeItem = id;
-    this.activeItemEvent.emit(item);
-    console.log(this.activeItem);
+  selectItem(item, id, index) {
+    this.activeItem.next(index);
+    this.activeItemEvent.emit({item, index});
   }
 
-  deleteItem(id) {
-    this.dataService.deleteItem(id)
+  deleteItem(item, index) {
+    this.dataService.deleteItem(item.id)
+      .pipe(first())
       .subscribe((res) => {
         this.getAllItems();
-        this.dataService.item$.next(true);
+        index === 0 && !(index + 1)
+          ? this.selectItem(this.items$[index + 1], this.items$[index + 1].id, index + 1)
+          : this.selectItem(this.items$[index - 1], this.items$[index - 1].id, index - 1)
+        this.dataService.item$.next({deleteItem: true});
       });
   }
-
 }

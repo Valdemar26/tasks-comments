@@ -7,14 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   item: any;
-
   constructor() { }
 
   ngOnInit() {
   }
 
-  getSelectedItemId(e) {
-    this.item = e;
+  getSelectedItemId(event) {
+    this.item = event;
   }
 
 }
