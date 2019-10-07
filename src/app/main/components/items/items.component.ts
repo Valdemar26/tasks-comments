@@ -50,6 +50,7 @@ export class ItemsComponent implements OnInit {
     this.dataService.deleteItem(id)
       .subscribe((res) => {
         this.getAllItems();
+        this.dataService.item$.next(true);
       });
   }
 
