@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { DataService } from '../../../service/data.service';
 import { first } from 'rxjs/operators';
+import {AuthenticationService} from '../../../auth/services/authentication.service';
 
 @Component({
   selector: 'app-items',
@@ -18,13 +19,21 @@ export class ItemsComponent implements OnInit {
   items$: Observable<any>;
   input: string;
   activeItem: any = new BehaviorSubject(0);
+  activeUser;
 
-  constructor(private dataService: DataService) { }
+  constructor(
+    private dataService: DataService,
+    private authService: AuthenticationService
+    ) { }
 
   ngOnInit() {
     this.getAllItems();
-
     this.activeItem.subscribe();
+    // this.activeUser = this.authService.currentUserSubject.subscribe();
+  }
+
+  getCurrentUSer() {
+    return this.authService.currentUserValue;
   }
 
   getAllItems() {

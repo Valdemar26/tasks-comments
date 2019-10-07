@@ -5,6 +5,7 @@ import { ItemsComponent } from './components/items/items.component';
 import { CommentsComponent } from './components/comments/comments.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import {AuthModule} from '../auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AuthModule
   ]
 })
 export class MainModule { }
