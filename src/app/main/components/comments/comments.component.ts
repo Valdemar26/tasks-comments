@@ -25,6 +25,9 @@ export class CommentsComponent implements OnInit, OnChanges {
     if (this.item) {
       this.comments = this.item.comments;
     }
+    this.dataService.item$.subscribe(
+      data => data ? this.comments = [] : null
+    );
   }
 
   getAllComments() {
