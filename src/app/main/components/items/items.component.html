@@ -4,7 +4,7 @@
 
     <div class="wrapper_content-block">
       <input class="add-item" type="text" [(ngModel)]="input" placeholder="Type name here...">
-      <button class="add-new-item" (click)="addNewItem(input)" [disabled]='!input'>Add new</button>
+      <button class="add-new-item" (click)="addNewItem(input)" [disabled]='!input' *ngIf="getCurrentUSer()">Add new</button>
     </div>
 
     <div class="item-wrapper">
