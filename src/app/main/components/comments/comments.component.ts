@@ -1,6 +1,6 @@
-import {Component, ElementRef, Input, OnChanges, OnInit, ViewChild} from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { DataService } from '../../../service/data.service';
-import {first} from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-comments',
