@@ -41,7 +41,7 @@ export class ItemsComponent implements OnInit {
       .pipe(first())
       .subscribe((res) => {
         this.items$ = res;
-        console.log(this.items$)
+        console.log(this.items$);
       });
   }
 

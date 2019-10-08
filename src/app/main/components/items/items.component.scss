@@ -80,6 +80,15 @@
           box-shadow: inset 3px 0 0 0 #EC8C8C;
         }
 
+        .count {
+          display: flex;
+          justify-content: center;
+          min-width: 20px;
+          border-radius: 4px;
+          background-color: #2f8cef;
+          color: #fff;
+        }
+
         .item-text {
           flex: 0 0 70%;
           max-width: 250px;
